@@ -9,6 +9,7 @@ Foro http://www.atariware.cl/aw/foro/viewtopic.php?f=1&t=2745
 + Ensamblador MADS http://mads.atari8.info/
 + Notepad++ https://notepad-plus-plus.org/download/v7.6.html
 
-## Guia de amniente 
+## Guía del ambiente 
 
-Web  http://www.atariware.cl/aw/portal/index.php/programacion/23-ambiente-de-desarrollo-para-ensamblador
+http://www.atariware.cl/aw/portal/index.php/programacion/23-ambiente-de-desarrollo-para-ensamblador
+
