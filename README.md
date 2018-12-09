@@ -2,7 +2,7 @@
 Repositorio de un demo del juego preliminary monty conocido como montezuma.
 
 ## Análisis del juego
-[Foro](http://www.atariware.cl/aw/foro/viewtopic.php?f=1&t=2745)
+[Foro](http://www.atariware.cl/aw/foro/viewtopic.php?f=1&t=2745) del análisis realizado.
 
 ## Herramientas 
 
