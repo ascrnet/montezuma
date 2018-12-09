@@ -1,3 +1,5 @@
+![demo](http://www.atariware.cl/ascrnet/articulos/montezuma/montedemo01.png)
+
 # Montezuma
 Repositorio de un demo del juego preliminary monty conocido como montezuma.
 
