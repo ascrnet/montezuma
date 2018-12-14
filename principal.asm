@@ -37,6 +37,7 @@ inicio
 	lda #120
 	sta HPOSP0 
 	sta HPOSP1 
+	sta PEDROX
 	poke HPOSP2,195
 	poke HPOSP3,55
 
@@ -45,31 +46,40 @@ inicio
 	sta PMBASE
 
 ; Limpia PMG y los Dibuja	
-	ldx #$00
-	ldy #$04 
-	jsr limpiarpmg
-	ldx #$00
+	borra_pmg
 	jsr dibugapmg
 	poke GRACTL,3
 
-; Ciclo infinito
-	jmp *
+; activa VBI	
+	lda #7
+	ldx #>vbi
+	ldy #<vbi
+	jsr SETVBV
 
-;Rutina que limpia PMG
-limpiarpmg
-   lda #$00
-limpiar
-   sta PMDIR,x
-   inx
-   bne limpiarpmg
-   inc limpiar+2
-   dey
-   bne limpiarpmg
-   rts
+; mover pedro
+lee_joystick
+	lda STICK0
+	cmp #11
+	beq joy_left
+	cmp #7
+	beq joy_right
+	jmp lee_joystick
+joy_left
+	dec PEDROX
+	jmp mover_pedro
+joy_right
+	inc PEDROX
+mover_pedro
+	lda PEDROX
+	sta HPOSP0 
+	sta HPOSP1 
+	pausa	
+	jmp lee_joystick
+
 
 ; Rutina que lee los Datos de los PMG
 dibugapmg
-	ldx 00
+	ldx #00
 lee_pedro
 	lda pedro1,x
 	sta VPOSP0+172,X
@@ -78,21 +88,20 @@ lee_pedro
 	inx
 	cpx #20
 	bne lee_pedro
-	ldx #00  
-lee_escorpion
-	lda escorpion,x
-	sta VPOSP2+116,X
-	inx
-	cpx #12
-	bne lee_escorpion
-	ldx #00
-lee_serpiente
-	lda serpiente,x
-	sta VPOSP3+115,X
-	inx
-	cpx #13
-	bne lee_serpiente
 	rts
+
+vbi
+	lda RTCLOK
+	and #$08
+	bne vbi_tiempo
+	dibuja_serpiente 1
+	dibuja_escorpion 1
+	jmp fin_vbi
+vbi_tiempo
+	dibuja_serpiente 2
+	dibuja_escorpion 2
+fin_vbi
+	jmp XITVBV	
 
 
 ; Diseño de la pantalla 

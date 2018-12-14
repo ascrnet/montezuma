@@ -3,7 +3,7 @@
 ;-----------------------------------
 
 titulo 
-	.byte " DEMO DE MONTEZUMA  "*
+	.byte " demo DE MONTEZUMA  "*
 
 pantalla
 :40 .byte 66
@@ -85,7 +85,7 @@ pedro2
 	.byte %01101110
 
 ; Diseño del escorpión
-escorpion
+escorpion_1
 	.byte %00001110
 	.byte %00011011
 	.byte %00010001
@@ -98,22 +98,49 @@ escorpion
 	.byte %10111100
 	.byte %01001100
 	.byte %10100001
+escorpion_2
+	.byte %00000000
+	.byte %00001110
+	.byte %00011011
+	.byte %00010001
+	.byte %00001001
+	.byte %01000001
+	.byte %00100011
+	.byte %01011111
+	.byte %00011110
+	.byte %00111100
+	.byte %11001100
+	.byte %10010010
 	
 ; Diseño de serpiente
-serpiente
+serpiente_1
 	.byte %00011000
-	.byte %00110100											
+	.byte %00110100
 	.byte %00111100
-	.byte %00100100	
-	.byte %00110000	
-	.byte %00011100	
+	.byte %00100000
+	.byte %00110000
+	.byte %00011100
 	.byte %00000110
-	.byte %00000010	
-	.byte %00000110	
-	.byte %01000100	
-	.byte %01000100	
-	.byte %11001100	
-	.byte %01111000	
+	.byte %00000010
+	.byte %00000110
+	.byte %10000100
+	.byte %10000100
+	.byte %11001100
+	.byte %01111000
+serpiente_2
+	.byte %00011000
+	.byte %00110100
+	.byte %00111100
+	.byte %00100100
+	.byte %00110000
+	.byte %00011100
+	.byte %00000110
+	.byte %00000010
+	.byte %00000110
+	.byte %01000100
+	.byte %01000100
+	.byte %11001100
+	.byte %01111000
 
 		
 	

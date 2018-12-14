@@ -4,8 +4,14 @@
 ; https://www.atariarchives.org/mapping/
 ;--------------------------------------------------
 
+; Reloj
+RTCLOK = $14
+
 ; Lista de despliegue (DL)
 SDLSTL = $0230
+
+; Leer joystick
+STICK0 = $0278
 
 ; Cambio de Font
 CHBAS  = $02f4 
@@ -35,8 +41,11 @@ SDMCTL = $022f
 GRACTL = $d01d
 NMIEN  = $d40e
 GPRIOR = $026f 
-PMBASE = $d407          	
+PMBASE = $d407 
 
+; Manejo de VBI
+SETVBV = $e45c
+XITVBV = $e462         	
 
 
 ;--------------------------------------------------
@@ -50,4 +59,8 @@ VPOSP0 = PMDIR+1024
 VPOSP1 = PMDIR+1280
 VPOSP2 = PMDIR+1536
 VPOSP3 = PMDIR+1792
+
+PEDROX = $90
+PEDROY = $91
+
 
