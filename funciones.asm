@@ -2,21 +2,6 @@
 ; utilizada en el demo
 ;-----------------------------------------
 
-
-;-----------------------------------------
-; Macro POKE
-; Parametros : Registro de memoria, Valor 
-; Ejemplo    : poke 710,0
-;-----------------------------------------
-.macro poke registro,valor
-	.if :0<>2
-		.error "Error POKE : cantidad de parametros incorrecto."
-	.else
-		lda #:valor
-		sta :registro
-	.endif
-.endm
-
 ;-----------------------------------------
 ; Macro PAUSA
 ; usando el Reloj
@@ -58,7 +43,7 @@ lee_serpiente
 	.else
 	lda serpiente_2,x
 	.endif
-	sta VPOSP3+115,X
+	sta VPOSP3+115,x
 	inx
 	cpx #13
 	bne lee_serpiente
@@ -69,14 +54,14 @@ lee_serpiente
 ; coloca el escorpion en el PMG 2
 ;-----------------------------------------
 .macro dibuja_escorpion :anima
-	ldx #00  
+	ldx #$00
 lee_escorpion
 	.if :1=1
 	lda escorpion_1,x
 	.else
 	lda escorpion_2,x
 	.endif
-	sta VPOSP2+116,X
+	sta VPOSP2+116,x
 	inx
 	cpx #12
 	bne lee_escorpion

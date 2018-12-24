@@ -4,27 +4,29 @@
 	org START
 	
 inicio
-; Setea la pantalla
-	mwa #dlist $230
-	poke SDMCTL,62
-	poke NMIEN,$c0
-	poke GPRIOR,32
+
+; Setea la pantalla DL y DLI
+	mwa #dl SDLSTL
+	mwa #dli VDSLST
+	mva #62 SDMCTL
+	mva #192 NMIEN
+	mva #32 GPRIOR
 
 ; Setea nuevo set de caracteres
-	mwa #>FONT CHBAS
+	mwa #>font CHBAS
 
 ; Setea colores en la pantalla
-	poke COLOR0,$22
-	poke COLOR1,$36 
-	poke COLOR2,$96
-	poke COLOR3,$0A
-	poke COLOR4,$00
+	mva #$22 COLOR0
+	mva #$36 COLOR1
+	mva #$96 COLOR2
+	mva #$0a COLOR3
+	mva #$00 COLOR4
 
 ; Color de PMG
-	poke PCOLR0,$1c
-	poke PCOLR1,$34
-	poke PCOLR2,$06
-	poke PCOLR3,$c8
+	mva #$1c PCOLR0
+	mva #$34 PCOLR1
+	mva #$06 PCOLR2
+	mva #$c8 PCOLR3
 
 ; Tamaños de PMG
 	lda #2
@@ -38,17 +40,17 @@ inicio
 	sta HPOSP0 
 	sta HPOSP1 
 	sta PEDROX
-	poke HPOSP2,195
-	poke HPOSP3,55
+	mva #195 HPOSP2
+	mva #55 HPOSP3
+	mva #0 ANIMAP
+	mva #2 PEDROD
 
 ; Setea la Memoria PMG
-	lda #>PMDIR
-	sta PMBASE
+	mva #>PMDIR PMBASE
 
-; Limpia PMG y los Dibuja	
+; Limpia PMG	
 	borra_pmg
-	jsr dibugapmg
-	poke GRACTL,3
+	MVA #3 GRACTL
 
 ; activa VBI	
 	lda #7
@@ -56,40 +58,10 @@ inicio
 	ldy #<vbi
 	jsr SETVBV
 
-; mover pedro
-lee_joystick
-	lda STICK0
-	cmp #11
-	beq joy_left
-	cmp #7
-	beq joy_right
-	jmp lee_joystick
-joy_left
-	dec PEDROX
-	jmp mover_pedro
-joy_right
-	inc PEDROX
-mover_pedro
-	lda PEDROX
-	sta HPOSP0 
-	sta HPOSP1 
-	pausa	
-	jmp lee_joystick
+; mover a pedro
+	icl 'joystick.asm'
 
-
-; Rutina que lee los Datos de los PMG
-dibugapmg
-	ldx #00
-lee_pedro
-	lda pedro1,x
-	sta VPOSP0+172,X
-	lda pedro2,x
-	sta VPOSP1+172,X
-	inx
-	cpx #20
-	bne lee_pedro
-	rts
-
+; Rutina VBI
 vbi
 	lda RTCLOK
 	and #$08
@@ -103,16 +75,27 @@ vbi_tiempo
 fin_vbi
 	jmp XITVBV	
 
-
-; Diseño de la pantalla 
-dlist
-:2	.byte $70
+; Diseño de la DL
+dl
+:2	.byte $70+$80
 	.byte $47
 	.word titulo
 :23	.byte $04
 	.word pantalla
 	.byte $41
-	.word dlist
-
-
+	.word dl
+	
+; Diseño de la DLI
+dli
+	phr
+	ldx #$0
+dli_letras
+	lda dli_colores,x
+	sta WSYNC
+	sta COLPF3
+	inx
+	cpx #16
+	bne dli_letras
+	plr
+	rti
 
