@@ -1,4 +1,4 @@
-![demo](http://www.atariware.cl/ascrnet/articulos/montezuma/montedemo01.png)
+![demo](http://www.atariware.cl/ascrnet/articulos/montezuma/montedemo01.png?raw=true)
 
 # Montezuma
 Repositorio de un demo del juego preliminary monty conocido como montezuma para ATARI 8Bits.
