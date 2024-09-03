@@ -4,7 +4,7 @@
 Repositorio de un demo del juego preliminary monty conocido como montezuma para ATARI 8Bits.
 
 ## Análisis del juego
-[Foro](http://www.atariware.cl/aw/foro/viewtopic.php?f=1&t=2745) del análisis realizado.
+[Wiki](https://www.atariware.cl/wiki/Programas/PreliminaryMonty) del análisis realizado.
 
 ## Herramientas 
 
